@@ -95,14 +95,4 @@ sniff(iface="wlan0mon" , prn=custom_action, timeout=time ,count=0)
 print("\n------------------------------- Summary of findings ----------------------------------\n")
 for k,v in dict.items():  
     print(k,v)
-
-
-
-
-
-
-
-
-
-
 ```
