@@ -8,22 +8,22 @@
 Script : 
 
 ```python
-#! /usr/bin/env python2.7
+#! /usr/bin/env python 3.5
 
 from scapy.all import *
 import sys
 
-# action personnalise effectuee par la methode sniff
 def custom_action(packet):
-
-    # on test si le paquet est une probe request
+    
+    # only prob request
     if packet.type !=0 or packet.subtype != 0x04:
         return
     else:
         return "The target is here" 
 
-
+# demarre la detection des paquets provenant de l'adresse MAC donne par l'utilisateur
 sniff(iface="wlan0mon", filter="ether src "+sys.argv[1] , prn=custom_action, count=0)
+
 ```
 
 - Quel type de trames sont nécessaires pour détecter les clients de manière passive ?
@@ -93,7 +93,7 @@ except:
 sniff(iface="wlan0mon" , prn=custom_action, timeout=time ,count=0)
 
 # affiche les ssid detectes sur l'ensemble des appareils
-print("\n--------------------------------- Summary of findings ------------------------------------\n")
+print("\n------------------------------- Summary of findings ----------------------------------\n")
 for k,v in dict.items():  
     print(k,v)
 
