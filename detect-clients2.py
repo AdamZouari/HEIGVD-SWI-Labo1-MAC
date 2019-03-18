@@ -1,43 +1,3 @@
-# Sécurité des réseaux sans fil
-
-## Laboratoire 802.11 MAC
-###### Auteurs : Nair Alic, Adam Zouari
-
-### 1. Détecter si un ou plusieurs clients 802.11 spécifiques sont à portée
-
-Script : 
-
-```python
-#! /usr/bin/env python2.7
-
-from scapy.all import *
-import sys
-
-# action personnalise effectuee par la methode sniff
-def custom_action(packet):
-
-    # on test si le paquet est une probe request
-    if packet.type !=0 or packet.subtype != 0x04:
-        return
-    else:
-        return "The target is here" 
-
-
-sniff(iface="wlan0mon", filter="ether src "+sys.argv[1] , prn=custom_action, count=0)
-```
-
-- Quel type de trames sont nécessaires pour détecter les clients de manière passive ?
-
-	Probe requests
-
-- Pourquoi le suivi n'est-il plus possible sur iPhone depuis iOS 8 ?</br>
-	
-	Car depuis iOS 8 Apple a introduit une randomization de l'adresse MAC quand il scanne passivement des reseaux WiFi
-
-
-### 2. Clients WiFi bavards
-
-```python
 #! /usr/bin/env python3.5
 
 from scapy.all import *
@@ -106,4 +66,3 @@ for k,v in dict.items():
 
 
 
-```
