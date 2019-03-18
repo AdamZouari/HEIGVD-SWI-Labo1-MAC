@@ -42,8 +42,7 @@ sniff(iface="wlan0mon", filter="ether src "+sys.argv[1] , prn=custom_action, cou
 
 from scapy.all import *
 import sys
-import time
-import curses
+
 dict = {}
 
 # action personnalise effectuee par la methode sniff
