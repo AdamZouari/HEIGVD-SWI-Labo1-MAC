@@ -17,7 +17,7 @@ try:
     mac = sys.argv[1]
 except:
     print("Please give the address of the target in argument ")
-    sys.exit(1)
+    sys.exit(0)
     
 # demarre la detection des paquets provenant de l'adresse MAC donne par l'utilisateur
 sniff(iface="wlan0mon", filter="ether src "+mac , prn=custom_action, count=0)
