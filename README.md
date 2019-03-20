@@ -3,9 +3,10 @@
 ## Laboratoire 802.11 MAC
 ###### Auteurs : Nair Alic, Adam Zouari
 
+*Note: Les scripts suivants nécessite python 3.*
+
 ### 1. Détecter si un ou plusieurs clients 802.11 spécifiques sont à portée
 
-Script : 
 
 ```python
 #! /usr/bin/env python 
