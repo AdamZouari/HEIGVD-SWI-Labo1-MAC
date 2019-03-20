@@ -21,17 +21,16 @@ def custom_action(packet):
         return
     elif packet.addr2 == mac:
         print "The target is here"
-  	sys.exit(0) 
+        sys.exit(0) 
 
 try:
     mac = sys.argv[1]
 except:
     print("Please give the address of the target in argument ")
-    sys.exit(1)
+    sys.exit(0)
     
 # demarre la detection des paquets provenant de l'adresse MAC donne par l'utilisateur
 sniff(iface="wlan0mon", filter="ether src "+mac , prn=custom_action, count=0)
-
 ```
 
 - Quel type de trames sont nécessaires pour détecter les clients de manière passive ?
