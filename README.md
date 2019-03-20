@@ -3,7 +3,7 @@
 ## Laboratoire 802.11 MAC
 ###### Auteurs : Nair Alic, Adam Zouari
 
-*Note: Les scripts suivants nécessite python 3.*
+*Note: Les scripts suivants nécessitent python 3 et doivent être lancés en tant que root.*
 
 ### 1. Détecter si un ou plusieurs clients 802.11 spécifiques sont à portée
 
@@ -109,4 +109,14 @@ def printApp(macOrg):
             
 # demarre la detection des paquets sur l'interface wlan0mon pendant un temps defini par l'utilisateur
 sniff(iface="wlan0mon" , prn=custom_action,count=0)
+```
+Exemple d'execution : 
+```
+5e:bd:c7:05:7b:3a (UNKNOWN)  ['Swisscom_Auto_Login']
+c8:ff:28:35:39:b3 (Liteon Technology Corporation)  ['HEIG-VD']
+c8:21:58:29:18:50 (Intel Corporate)  ['HEIG-VD']
+20:39:56:27:2b:ca (HMD Global Oy)  ['Sunrise_2.4GHz_9D6450']
+20:39:56:27:2b:ca (HMD Global Oy)  ['Sunrise_2.4GHz_9D6450', 'ConnectionPoint5']
+42:37:74:f0:50:54 (UNKNOWN)  ['Swisscom_Auto_Login']
+60:57:18:ac:fc:d8 (Intel Corporate)  ['HEIG-VD']
 ```
