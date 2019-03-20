@@ -3,15 +3,15 @@
 from scapy.all import *
 import sys
 
-# action personnalise effectuee par la methode sniff
+# action personnalisee effectuee par la methode sniff
 def custom_action(packet):
     
-    # only prob request
+    # uniquement les probe requests
     if packet.type !=0 or packet.subtype != 0x04:
         return
     elif packet.addr2 == mac:
-        print "The target is here"
-        sys.exit(0) 
+        print ("The target is here")
+        sys.exit(0)
 
 try:
     mac = sys.argv[1]

@@ -2,20 +2,35 @@
 
 from scapy.all import *
 import sys
+import urllib.request as urllib2
+import json
+import codecs
 
 dict = {}
 
+# permet de récuperer le constructeur de la MAC address
+def get_vendor(mac):
+    
+    url = "http://macvendors.co/api/"
+    request = urllib2.Request(url+mac, headers={'User-Agent' : "API Browser"}) 
+    response = urllib2.urlopen( request )
+    reader = codecs.getreader("utf-8")
+    obj = json.load(reader(response))
+    return obj['result']['company']
+
+    
 # action personnalise effectuee par la methode sniff
 def custom_action(packet):    
 
     # filtre pour recuperer seulement les probe request
     if packet.type == 0 and packet.subtype == 0x04:
+        
         try:
             mac = str(packet.addr2)
             ssid = str(packet.info,"utf-8")
-            org = mac.oui.registration().org                
+            org = get_vendor(mac)        
         except:
-            org= "UKNOWN"
+            org= "UNKNOWN"
             
         macOrg = mac + " (" + org + ") " 
         
@@ -35,13 +50,14 @@ def custom_action(packet):
                 # on ajoute le ssid a la liste et on l'affiche
                 dict[macOrg] += [ssid]
                 printApp(macOrg)
-       
+
+
 # affiche la liste des ssid d'un appareil
 def printApp(macOrg):
     for k,v in dict.items():  
         if k == macOrg :
             print(k,v)
-        
-        
+            
+            
 # demarre la detection des paquets sur l'interface wlan0mon pendant un temps defini par l'utilisateur
 sniff(iface="wlan0mon" , prn=custom_action,count=0)
