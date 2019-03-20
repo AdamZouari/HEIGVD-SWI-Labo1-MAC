@@ -2,8 +2,7 @@
 
 from scapy.all import *
 import sys
-import time
-import curses
+
 dict = {}
 
 # action personnalise effectuee par la methode sniff
@@ -56,13 +55,3 @@ sniff(iface="wlan0mon" , prn=custom_action, timeout=time ,count=0)
 print("\n--------------------------------- Summary of findings ------------------------------------\n")
 for k,v in dict.items():  
     print(k,v)
-
-
-
-
-
-
-
-
-
-
