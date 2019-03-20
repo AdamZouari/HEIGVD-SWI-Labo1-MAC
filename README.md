@@ -8,21 +8,29 @@
 Script : 
 
 ```python
-#! /usr/bin/env python 3.5
+#! /usr/bin/env python 
 
 from scapy.all import *
 import sys
 
+# action personnalise effectuee par la methode sniff
 def custom_action(packet):
     
     # only prob request
     if packet.type !=0 or packet.subtype != 0x04:
         return
-    else:
-        return "The target is here" 
+    elif packet.addr2 == mac:
+        print "The target is here"
+  sys.exit(0) 
 
+try:
+    mac = sys.argv[1]
+except:
+    print("Please give the address of the target in argument ")
+    sys.exit(1)
+    
 # demarre la detection des paquets provenant de l'adresse MAC donne par l'utilisateur
-sniff(iface="wlan0mon", filter="ether src "+sys.argv[1] , prn=custom_action, count=0)
+sniff(iface="wlan0mon", filter="ether src "+mac , prn=custom_action, count=0)
 
 ```
 
@@ -38,7 +46,7 @@ sniff(iface="wlan0mon", filter="ether src "+sys.argv[1] , prn=custom_action, cou
 ### 2. Clients WiFi bavards
 
 ```python
-#! /usr/bin/env python3.5
+#! /usr/bin/env python
 
 from scapy.all import *
 import sys
@@ -47,7 +55,7 @@ dict = {}
 
 # action personnalise effectuee par la methode sniff
 def custom_action(packet):    
-    
+
     # filtre pour recuperer seulement les probe request
     if packet.type == 0 and packet.subtype == 0x04:
         try:
@@ -82,17 +90,7 @@ def printApp(macOrg):
         if k == macOrg :
             print(k,v)
         
-try:
-    time = int(sys.argv[1])
-except:
-    print("Please give the sniffing time (in seconds) in argument ")
-    sys.exit(1)
-   
+        
 # demarre la detection des paquets sur l'interface wlan0mon pendant un temps defini par l'utilisateur
-sniff(iface="wlan0mon" , prn=custom_action, timeout=time ,count=0)
-
-# affiche les ssid detectes sur l'ensemble des appareils
-print("\n------------------------------- Summary of findings ----------------------------------\n")
-for k,v in dict.items():  
-    print(k,v)
+sniff(iface="wlan0mon" , prn=custom_action,count=0)
 ```
