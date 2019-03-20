@@ -21,7 +21,7 @@ def custom_action(packet):
         return
     elif packet.addr2 == mac:
         print "The target is here"
-  sys.exit(0) 
+  	sys.exit(0) 
 
 try:
     mac = sys.argv[1]
