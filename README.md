@@ -27,12 +27,12 @@ sniff(iface="wlan0mon", filter="ether src "+sys.argv[1] , prn=custom_action, cou
 ```
 
 - Quel type de trames sont nécessaires pour détecter les clients de manière passive ?
-
-	Probe requests
+ 
+	Il s'agit des probe requests car les appareils des clients s'annonçent au monde entier en devoilant leurs adresses MAC ainsi que les SSID des réseaux utilisés.
 
 - Pourquoi le suivi n'est-il plus possible sur iPhone depuis iOS 8 ?</br>
 	
-	Car depuis iOS 8 Apple a introduit une randomization de l'adresse MAC quand il scanne passivement des reseaux WiFi
+	Depuis iOS 8, Apple a introduit une randomization de l'adresse MAC quand l'iPhone scanne passivement les reseaux WiFi. C'est ce mécanisme qui rend impossible le suivi de ceux-ci.
 
 
 ### 2. Clients WiFi bavards
